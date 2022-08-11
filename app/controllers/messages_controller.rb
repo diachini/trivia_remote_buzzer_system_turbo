@@ -63,8 +63,27 @@ class MessagesController < ApplicationController
       @message = Message.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def message_params
-      params.require(:message).permit(:sender, :action)
+      p = message_required_params.merge(action: action_from_params(params[:commit]))
+    end
+
+    def action_from_params(action)
+      case params[:commit]
+      when 'Ring In'
+        'rang in'
+      when 'Check In'
+        'is in the house'
+      when 'Allow Responses'
+        'opened responses'
+      when 'Reset'
+        'reset responses'
+      else
+        'hacked the gibson'
+      end
+    end
+
+    # Only allow a list of trusted parameters through.
+    def message_required_params
+      params.require(:message).permit(:sender)
     end
 end
