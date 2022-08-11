@@ -12,7 +12,9 @@
   <% end %>
 
   <div>
-    <%= form.text_field :sender, placeholder: 'Your name' %>
+    <%= form.text_field :sender, placeholder: 'Your name',
+          data: { controller: 'username', action: 'change->username#persist' }
+    %>
   </div>
 
   <%= form.submit "Check In", class: 'check-in' %>
