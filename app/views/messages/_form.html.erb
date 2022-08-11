@@ -12,16 +12,12 @@
   <% end %>
 
   <div>
-    <%= form.label :sender, style: "display: block" %>
-    <%= form.text_field :sender %>
+    <%= form.text_field :sender, placeholder: 'Your name' %>
   </div>
 
-  <div>
-    <%= form.label :action, style: "display: block" %>
-    <%= form.text_field :action %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
+  <%= form.submit "Check In", class: 'check-in' %>
+  <%= form.submit "Allow Responses", class: 'allow-responses' %>
+  <%= form.submit "Reset", class: 'reset' %>
+  <br />
+  <%= form.button "Ring In", type: :submit, class: 'ring-in', name: "commit", value:"Ring In" %>
 <% end %>
