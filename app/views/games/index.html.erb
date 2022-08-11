@@ -4,6 +4,8 @@
 
 <%= render "messages/form", message: Message.new %>
 
+<%= turbo_stream_from 'live_messages' %>
+
 <div id="messages">
   <% @messages.each do |message| %>
     <%= render partial: 'messages/short_message', locals: { message: message } %>

@@ -25,6 +25,13 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
+
+        @message.broadcast_prepend_to 'live_messages',
+          target: 'messages',
+          partial: 'messages/short_message',
+          locals: { message: @message }
+
+        format.turbo_stream { }
         format.html { redirect_to message_url(@message), notice: "Message was successfully created." }
         format.json { render :show, status: :created, location: @message }
       else
